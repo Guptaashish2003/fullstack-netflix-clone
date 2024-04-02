@@ -2,12 +2,13 @@ import { Router} from "express";
 import User from "../models/User";
 
 
+
 const router = Router();
 
 // register thie user
 
 router.post("/register",async (req,res)=>{
-    const newUser = new User({
+    const newUser =  new User({
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
