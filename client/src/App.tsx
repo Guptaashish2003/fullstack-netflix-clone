@@ -1,8 +1,15 @@
 import React from 'react'
+import LandingPage from './components/LandingPage/LandingPage'
+import NavBar from './components/LandingPage/NavBar'
+import "./index.css"
 
 const App = () => {
   return (
-    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima odio quisquam voluptatum. Enim pariatur aliquam velit corporis est repellat nihil excepturi, maxime commodi nostrum atque nobis, id repudiandae, ea illo iusto doloribus reiciendis aspernatur neque dolore! Accusantium reprehenderit corporis quae culpa voluptas vel.</div>
+    <div className=' ' >
+      <NavBar />
+      
+      <LandingPage />
+    </div>
   )
 }
 
