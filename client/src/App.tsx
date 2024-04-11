@@ -5,9 +5,7 @@ import "./index.css"
 
 const App = () => {
   return (
-    <div className=' ' >
-      <NavBar />
-      
+    <div className=' ' >     
       <LandingPage />
     </div>
   )
