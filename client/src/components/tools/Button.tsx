@@ -6,7 +6,8 @@ interface ButtonProps {
   className?: string;
   loading?: boolean;
   value: React.JSX.Element | string;
-  onClick?: () => void;
+  // onclick do or null
+  onClick?: () => void | null;
   icons?: React.JSX.Element;
   props?: object;
 }

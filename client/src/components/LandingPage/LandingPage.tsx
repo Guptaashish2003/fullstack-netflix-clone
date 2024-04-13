@@ -1,9 +1,52 @@
-import React from "react";
+import React,{useState} from "react";
 import LandingNav from "./LandingNav";
 import { FaAngleRight } from "react-icons/fa";
 import Button from "../tools/Button";
+import { useForm,SubmitHandler, set } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import {
+ 
+  Route,
+  Link,
+} from "react-router-dom";
+
+const schema = yup.object().shape({
+  email: yup.string()
+    .required("Email is required")
+    .email("Email is not valid")
+    .max(80 , "Email is too long")
+    .matches(/^\S+@\S+$/i , "Email is not valid"),
+  password: yup.string()
+    .required("Password is required")
+    .min(8 , "Password is too short")
+    .max(16 , "Password is too long")
+    
+});
+
+interface IFormInput {
+  email: string;
+  password: string;
+}
 
 const LandingPage = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [forPassword, setForPassword] = useState("");
+  const { register, handleSubmit,formState:{errors} } = useForm<IFormInput>({resolver: yupResolver(schema)});
+  const handleEmailNext = () => {
+    // Add any logic here if needed
+    setShowPassword(true);
+    setForPassword("hidden");
+  };
+  
+  const onSubmit: SubmitHandler<IFormInput> = (data) =>{ 
+    console.log(data);
+    localStorage.setItem("email" , data.email);
+   
+    
+
+  }
+ 
   return (
     <>
       <div
@@ -23,18 +66,34 @@ const LandingPage = () => {
             Ready to watch? Enter your email to create or restart your
             membership.
           </p>
-          <div className="flex gap-4 mt-4 w-1/2 justify-center items-center">
+          <form onSubmit={handleSubmit(onSubmit)} className="flex gap-4 mt-4 w-1/2 justify-center items-center">
+          <div className={`w-3/5 ${forPassword}`}>
             <input
               type="text"
-              className=" w-3/5 text-2xl h-20 p-4 bg-transparent rounded-md border-2 border-white text-white"
+              className="w-full text-2xl h-20 p-4 bg-transparent rounded-md border-2 border-white text-white"
               placeholder="Email address"
+              {...register("email")}
             />
-            <Button
-              icons={<FaAngleRight />}
-              value="Get Started"
-              className=" h-20 w-60 text-3xl bg-red-700 text-white rounded-md"
-            />
+            <p className="text-xl text-gray-50">{errors.email?.message}</p>
           </div>
+          {showPassword && (
+            <div className="w-3/5">
+              <input
+                type="password"
+                className="w-full text-2xl h-20 p-4 bg-transparent rounded-md border-2 border-white text-white"
+                placeholder="Password"
+                {...register("password")}
+              />
+              <p className="text-xl text-gray-50">{errors.password?.message}</p>
+            </div>
+          )}
+          <Button
+            icons={<FaAngleRight />}
+            value={showPassword ? "Submit" : "Get Started"}
+            className="h-20 w-60 text-3xl bg-red-700 text-white rounded-md"
+            onClick={showPassword ? undefined : handleEmailNext}
+          />
+        </form>
         </div>
       </div>
 
