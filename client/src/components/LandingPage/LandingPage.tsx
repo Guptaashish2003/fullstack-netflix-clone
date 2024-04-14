@@ -5,11 +5,8 @@ import Button from "../tools/Button";
 import { useForm,SubmitHandler, set } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import {
- 
-  Route,
-  Link,
-} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 const schema = yup.object().shape({
   email: yup.string()
@@ -30,21 +27,31 @@ interface IFormInput {
 }
 
 const LandingPage = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [forPassword, setForPassword] = useState("");
   const { register, handleSubmit,formState:{errors} } = useForm<IFormInput>({resolver: yupResolver(schema)});
   const handleEmailNext = () => {
     // Add any logic here if needed
-    setShowPassword(true);
-    setForPassword("hidden");
+    if(errors.email){
+      setForPassword("")
+      setShowPassword(false);
+
+    }
+    else{
+      setForPassword("hidden")
+      setShowPassword(true);
+    }
   };
+  console.log(showPassword)
+  // if(!errors.email){
+
+  // }
   
   const onSubmit: SubmitHandler<IFormInput> = (data) =>{ 
     console.log(data);
     localStorage.setItem("email" , data.email);
-   
-    
-
+    navigate("/home");
   }
  
   return (
@@ -76,7 +83,7 @@ const LandingPage = () => {
             />
             <p className="text-xl text-gray-50">{errors.email?.message}</p>
           </div>
-          {showPassword && (
+          {showPassword && !errors.email ?(
             <div className="w-3/5">
               <input
                 type="password"
@@ -86,10 +93,10 @@ const LandingPage = () => {
               />
               <p className="text-xl text-gray-50">{errors.password?.message}</p>
             </div>
-          )}
+          ):""}
           <Button
             icons={<FaAngleRight />}
-            value={showPassword ? "Submit" : "Get Started"}
+            value={showPassword && !errors.email ? "Submit" : "Get Started"}
             className="h-20 w-60 text-3xl bg-red-700 text-white rounded-md"
             onClick={showPassword ? undefined : handleEmailNext}
           />
