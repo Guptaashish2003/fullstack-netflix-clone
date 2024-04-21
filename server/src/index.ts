@@ -6,11 +6,11 @@ const authRoute = require("./routes/auth");
 
 
 dotenv.config();
+const db = process.env.MONGODB_URL;
+console.log("db",db)
 
 mongoose.connect(process.env.MONGODB_URL, {
-    userNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
+    
 }).then(()=>{
     console.log("Database connected")
 }).catch((error:Error)=>{

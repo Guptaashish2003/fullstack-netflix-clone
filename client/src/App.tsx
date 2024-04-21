@@ -1,12 +1,12 @@
 import React from 'react'
-import LandingPage from './components/LandingPage/LandingPage'
+import Home from './(pages)/Home'
 import NavBar from './components/LandingPage/NavBar'
 import "./index.css"
 
 const App = () => {
   return (
     <div className=' ' >     
-      <LandingPage />
+      <Home />
     </div>
   )
 }
