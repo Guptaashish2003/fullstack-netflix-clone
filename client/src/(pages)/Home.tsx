@@ -8,15 +8,25 @@ const Home = () => {
     >
       <div className="backgoundImage   " />
       <div className="h-full w-full  "></div>
-      <div className=" bg-zinc-900 h-[90vh] px-6 mx-auto flex gap-x-2 overflow-clip ">
+      <div className="z-10 absolute bg-zinc-900 px-6">
+        <h2 className="text-white pt-2 text-3xl">Trending </h2>
+        <div className="   mx-auto flex gap-x-2 overflow-x-clip ">
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+        </div>
 
-
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      </ div>
+        <h2 className="text-white pt-2 text-3xl">Feature  </h2>
+        <div className="   h-[90vh] mx-auto flex gap-x-2 overflow-x-clip ">
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+        </div>
+      </div>
     </div>
   );
 };

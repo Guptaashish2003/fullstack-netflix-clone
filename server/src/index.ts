@@ -3,11 +3,12 @@ const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const authRoute = require("./routes/auth");
+const userRoute = require("./routes/user");
+const movieRoute = require("./routes/movies");
 
 
 dotenv.config();
-const db = process.env.MONGODB_URL;
-console.log("db",db)
+
 
 mongoose.connect(process.env.MONGODB_URL, {
     
@@ -18,6 +19,8 @@ mongoose.connect(process.env.MONGODB_URL, {
 })
 app.use(express.json());
 app.use("/server/auth", authRoute);
+app.use("/server/user", userRoute);
+app.use("/server/movies", movieRoute);
 
 
 app.listen(8080, () => {

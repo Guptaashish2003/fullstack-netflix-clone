@@ -1,43 +1,64 @@
 import mongoose from "mongoose";
 
-const movieSchema = new mongoose.Schema({
+const movieSchema = new mongoose.Schema(
+  {
     title: {
-        type: String,
-        required: true,
-        unique: true,
+      type: String,
+      required: true,
+      unique: true,
     },
     desc: {
-        type: String,
+      type: String,
+    },
+    plot: {
+      type: String,
     },
     img: {
-        type: String,
+      type: String,
     },
     imgTitle: {
-        type: String,
+      type: String,
     },
     imgSm: {
-        type: String,
+      type: String,
     },
     trailer: {
-        type: String,
+      type: String,
     },
     video: {
-        type: String,
+      type: String,
     },
     year: {
-        type: String,
+      type: String,
     },
     limit: {
-        type: Number,
+      type: Number,
     },
     genre: {
-        type: String,
+      type: String,
     },
     isSeries: {
-        type: Boolean,
-        default: false,
+      type: Boolean,
+      default: false,
     },
-},{timestamps: true});
+    imdb: {
+      type: Object,
+    },
+    director: {
+      type: String,
+    },
+    writer: {
+      type: String,
+    },
+    cast: {
+      type: Array,
+    },
+    runtime: {
+      type: String,
+    },
+  },
+  { timestamps: true }
+);
 
 const Movie = mongoose.models.Movie || mongoose.model("Movie", movieSchema);
 export default Movie;

@@ -14,9 +14,18 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "",
     },
+    userName:{
+        type: String,
+        required: true,
+        unique: true,  
+    },
     password: {
         type: String,
         required: true,
+    },
+    isSuspended: {
+        type: Boolean,
+        default: false,
     },
     isAdmin: {
         type: Boolean,
