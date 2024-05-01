@@ -41,10 +41,11 @@ const SignIn = () => {
    <>
       <div className="backgoundImage   " />
     <div
-      style={{ backgroundColor: "rgba(0, 0, 0, 0.7)" }}
-      className="h-1/4 w-1/3 max-sm:w-full max-sm:mt-44 justify-center items-center md:mt-52 max-sm:h-[30vh]   "
+      style={{ backgroundColor: "rgba(0, 0, 0, 0.8)" }}
+      className="h-1/4 w-1/3 max-sm:w-full max-sm:mt-44 justify-center items-center md:mt-52 max-sm:h-[40vh] m-auto  "
     >
-      <div className="w-full flex justify-center items-center m-auto">
+        <p className="text-white pl-2 text-3xl py-3">Sign In</p>
+      <div className="w-full flex flex-col  justify-center items-center m-auto">
         <form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col justify-center items-center gap-y-4 p-2 max-sm:mt-6 " >
         <input
               type="email"
@@ -68,6 +69,15 @@ const SignIn = () => {
             />
         
         </form>
+        <p className="text-white text-lg w-full text-start px-3 py-4">
+            Don't have an account?{" "}
+            <span
+                className="text-blue-500 text-start cursor-pointer"
+                onClick={() => navigate("/SignUp")}
+            >
+                Sign up
+            </span>
+        </p>
 
        
       </div>

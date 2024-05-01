@@ -44,10 +44,11 @@ const SignUp = () => {
         <>
       <div  className="backgoundImage   " />
     <div
-      style={{ backgroundColor: "rgba(0, 0, 0, 0.7)" }}
-      className="h-1/3 w-1/3 max-sm:w-full max-sm:mt-44 justify-center items-center md:mt-52 max-sm:h-[39vh] m-auto   "
+      style={{ backgroundColor: "rgba(0, 0, 0, 0.85)" }}
+      className="h-1/3 w-1/3 max-sm:w-full max-sm:mt-44 justify-center items-center md:mt-48 max-sm:h-[39vh] m-auto   "
     >
-      <div className="w-full flex justify-center items-center m-auto">
+        <p className="text-white pl-2 text-3xl py-3">Sign Up</p>
+      <div className="w-full flex flex-col justify-center items-center m-auto">
         <form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col justify-center items-center gap-y-4 p-2 max-sm:mt-6 " >
             
         <input
@@ -79,6 +80,15 @@ const SignUp = () => {
             />
         
         </form>
+        <p className="text-white text-lg w-full text-start px-3 py-4">
+            Already have account{" "}
+            <span
+                className="text-blue-500 text-start cursor-pointer"
+                onClick={() => navigate("/SignIn")}
+            >
+                Sign in
+            </span>
+        </p>
 
        
       </div>

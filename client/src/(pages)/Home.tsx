@@ -1,11 +1,13 @@
 import React from "react";
 import Card from "../components/tools/Card";
+import NavBar from "../components/MainPage/NavBar";
 const Home = () => {
   return (
     <div
       style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
       className="h-[100vh]"
     >
+      <NavBar />
       <div className="backgoundImage   " />
       <div className="h-full w-full  "></div>
       <div className="z-10 absolute bg-zinc-900 px-6">
