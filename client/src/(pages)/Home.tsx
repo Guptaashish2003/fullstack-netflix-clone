@@ -1,14 +1,15 @@
 import React from "react";
 import Card from "../components/tools/Card";
 import NavBar from "../components/MainPage/NavBar";
+import BannerSwiper from "../components/MainPage/BannerSwiper";
 const Home = () => {
   return (
     <div
       style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
-      className="h-[100vh]"
+      className=""
     >
       <NavBar />
-      <div className="backgoundImage   " />
+      <BannerSwiper />
       <div className="h-full w-full  "></div>
       <div className="z-10 absolute bg-zinc-900 px-6">
         <h2 className="text-white pt-2 text-3xl">Trending </h2>
