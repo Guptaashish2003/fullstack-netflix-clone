@@ -7,7 +7,7 @@ const Card = () => {
     <div className='group bg-zinc-900 h-[11vw]  col-span relative mt-6  '>
         <img src="12th-Fail.jpg" alt="thumbnail" className='cursor-pointer object-cover transition duration shadow-xl rounded-md group-hover:opacity-90  sm:group-hover:opacity-0 w-full h-[11vw]
          ' />
-         <div className='opacity-0 absolute top-0 transition duration-400 z-10 invisible sm:visible delay-300 w-full scale-0 group-hover:scale-110 group-hover:translate-x-[2vw] group-hover:translate-y-[6vw]  group-hover:opacity-100  '>
+         <div className='opacity-0 absolute top-0 transition duration-400 z-10 invisible sm:visible delay-300 w-full scale-0 group-hover:scale-110 group-hover:translate-x-[1.5vw] group-hover:translate-y-[-6vw]  group-hover:opacity-100  '>
          <img src="12th-Fail.jpg" alt="thumbnail" className='cursor-pointer object-cover transition duration shadow-xl rounded-t-md w-full h-full     ' />
          <div className=' z-10 bg-zinc-800 p-2 lg:p-4 absolute w-full transition shadow-md rounded-b-md    '>
           <div className='flex flex-row items-center gap-3' >

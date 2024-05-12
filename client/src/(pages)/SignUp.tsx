@@ -3,7 +3,8 @@ import { FaAngleRight } from "react-icons/fa";
 import { useForm,SubmitHandler, set } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import axios,{AxiosResponse} from "axios";
 
 
 const schema = yup.object().shape({
@@ -32,13 +33,23 @@ interface IFormInput {
 
 
 const SignUp = () => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const { register, handleSubmit,formState:{errors} } = useForm<IFormInput>({resolver: yupResolver(schema)});
 
-    const onSubmit: SubmitHandler<IFormInput> = (data) =>{ 
-      console.log(data);
-     
-      navigate("/home");
+    const onSubmit: SubmitHandler<IFormInput> = async (data) =>{ 
+      try {
+        const res:AxiosResponse = await axios.post(`/auth/register` , data);
+        if(res.status === 200){
+            console.log(res.data);
+            // navigate("/SignIn");
+        }
+
+        return res.data;
+        
+      } catch (error) {
+        // navigate("/");
+        return error;        
+      }
     }
     return (
         <>
@@ -84,7 +95,7 @@ const SignUp = () => {
             Already have account{" "}
             <span
                 className="text-blue-500 text-start cursor-pointer"
-                onClick={() => navigate("/SignIn")}
+                // onClick={() => navigate("/SignIn")}
             >
                 Sign in
             </span>

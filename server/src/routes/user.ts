@@ -130,4 +130,4 @@ router.get("/",verify,async( req:IGetUserAuthInfoRequest,res:Response)=>{
 //     }
 // })
 
-
+module.exports = router;

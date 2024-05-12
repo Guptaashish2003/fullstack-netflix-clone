@@ -5,6 +5,8 @@ const dotenv = require("dotenv");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/user");
 const movieRoute = require("./routes/movies");
+const cors = require('cors');
+app.use(cors());
 
 
 dotenv.config();
