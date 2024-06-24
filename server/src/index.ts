@@ -5,11 +5,14 @@ const dotenv = require("dotenv");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/user");
 const movieRoute = require("./routes/movies");
-const cors = require('cors');
-app.use(cors());
-
-
 dotenv.config();
+const cors = require('cors');
+app.use(cors({
+    origin: process.env.FRONTEND_URL as string,
+}));
+console.log(process.env.FRONTEND_URL as string)
+
+
 
 
 mongoose.connect(process.env.MONGODB_URL, {
@@ -25,6 +28,6 @@ app.use("/server/user", userRoute);
 app.use("/server/movies", movieRoute);
 
 
-app.listen(8080, () => {
-  console.log("Server is running on port 8080");
+app.listen(5500, () => {
+  console.log("Server is running on port 5500");
 });

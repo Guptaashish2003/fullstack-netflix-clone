@@ -7,7 +7,7 @@ const movieSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    desc: {
+    description: {
       type: String,
     },
     plot: {
@@ -31,7 +31,7 @@ const movieSchema = new mongoose.Schema(
     year: {
       type: String,
     },
-    limit: {
+    ageLimit: {
       type: Number,
     },
     genre: {

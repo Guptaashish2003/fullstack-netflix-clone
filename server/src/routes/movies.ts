@@ -77,7 +77,7 @@ router.get("/find/:id",verify,async (req:IGetUserAuthInfoRequest,res:Response)=>
 
 // get all movies
 
-router.get("/",verify,async (req:IGetUserAuthInfoRequest,res:Response)=>{
+router.get("/all",verify,async (req:IGetUserAuthInfoRequest,res:Response)=>{
     const query = req.query.new;
     try {
         const movies = query ? await Movie.find().sort({createdAt:-1}).limit(5) : await Movie.find();

@@ -6,6 +6,7 @@ import { useForm,SubmitHandler, set } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 const schema = yup.object().shape({
@@ -32,10 +33,23 @@ const SignIn = () => {
     const navigate = useNavigate();
     const { register, handleSubmit,formState:{errors} } = useForm<IFormInput>({resolver: yupResolver(schema)});
 
-    const onSubmit: SubmitHandler<IFormInput> = (data) =>{ 
-      console.log(data);
+    const onSubmit: SubmitHandler<IFormInput> = async (data) =>{ 
+        try {
+            const res = await axios.post("http://localhost:5500/auth/login",data);
+            
+            
+            if(res.status === 200){
+                console.log("login success",res.data);
+              }
+              
+            } catch (error) {
+              console.log(error)
+              // navigate("/home");
+
+        }
+      
      
-      navigate("/home");
+    
     }
   return (
    <>
