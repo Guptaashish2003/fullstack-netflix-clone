@@ -7,13 +7,14 @@ interface User{
 }
 
 export const verify = (req:any,res:Response,next:NextFunction)=>{
-    const authHeader = req.headers.token as string;
-    console.log("authHeader...........",authHeader)
+    const authHeader = req.headers.cookie as string;
+    console.log("authHeader...........",req.headers.cookie)
     if(authHeader){
-        const token = authHeader.split(" ")[1];
+        const token = authHeader.split("token=")[1];
         console.log("token.......",token)
         jwt.verify(token,process.env.SECRET_KEY,(err:any,user:User)=>{
             try {
+                console.log("user.......",err,user)
                 if(err){
                     return res.status(403).json({message: "Token is not valid!"});
                 }

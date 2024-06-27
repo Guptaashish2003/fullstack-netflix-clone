@@ -1,6 +1,6 @@
 import { Router,Request,Response } from "express";
 import Movie from "../models/Movie";
-import {verify} from "../verifyToken";
+import {verify} from "../utils/verifyToken";
 
 import {IGetUserAuthInfoRequest} from "./user";
 
@@ -77,10 +77,12 @@ router.get("/find/:id",verify,async (req:IGetUserAuthInfoRequest,res:Response)=>
 
 // get all movies
 
-router.get("/all",verify,async (req:IGetUserAuthInfoRequest,res:Response)=>{
+router.get("/all",async (req:IGetUserAuthInfoRequest,res:Response)=>{
+    console.log("hjellllllllllllllllllllllllllll")
     const query = req.query.new;
     try {
         const movies = query ? await Movie.find().sort({createdAt:-1}).limit(5) : await Movie.find();
+       
         return res.status(200).json({movies:movies,message: "Movies fetched successfully"});
     } catch (error) {
         console.log("error.......",error)

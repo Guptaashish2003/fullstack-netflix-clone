@@ -35,11 +35,12 @@ const SignIn = () => {
 
     const onSubmit: SubmitHandler<IFormInput> = async (data) =>{ 
         try {
-            const res = await axios.post("http://localhost:5500/auth/login",data);
+            const res = await axios.post("/auth/login",data);
             
             
             if(res.status === 200){
-                console.log("login success",res.data);
+                console.log("login success");
+                navigate("/home");
               }
               
             } catch (error) {

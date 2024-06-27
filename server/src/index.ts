@@ -1,33 +1,29 @@
-const express = require("express");
-const app = express();
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-const authRoute = require("./routes/auth");
-const userRoute = require("./routes/user");
-const movieRoute = require("./routes/movies");
-dotenv.config();
-const cors = require('cors');
-app.use(cors({
-    origin: process.env.FRONTEND_URL as string,
-}));
-console.log(process.env.FRONTEND_URL as string)
+// importing require files 
+const dotenv = require('dotenv');
+dotenv.config({ path: './.env' });
+const app = require("./app")
+const connectDatabase = require('./config/dbConnect');
+// set up config file 
 
-
-
-
-mongoose.connect(process.env.MONGODB_URL, {
-    
-}).then(()=>{
-    console.log("Database connected")
-}).catch((error:Error)=>{
-    console.log("databse connection failed....",error)
+// handling uncaught exceptions
+process.on('uncaughtException', (err) => {
+    console.log(err.name, err.message);
+    console.log('Uncaught Exception occured! Shutting down...');
+    process.exit(1);
 })
-app.use(express.json());
-app.use("/server/auth", authRoute);
-app.use("/server/user", userRoute);
-app.use("/server/movies", movieRoute);
+//  connect to Database 
+connectDatabase()
 
+// running server
+const server = app.listen(process.env.PORT, () => {
+    console.log(`server has started... on PORT ${process.env.PORT} in ${process.env.NODE_ENV} mode.`);
+})
+// handling unhandled errors
+process.on('unhandledRejection', (err) => {
+    console.log('Unhandled rejection occured! Shutting down...');
 
-app.listen(5500, () => {
-  console.log("Server is running on port 5500");
-});
+    server.close(() => {
+        process.exit(1);
+    })
+})
+

@@ -2,7 +2,7 @@ import { Router } from "express";
 import User from "../models/User";
 import CryptoJS from "crypto-js";
 import { Request,Response } from "express";
-import {verify} from "../verifyToken";
+import {verify} from "../utils/verifyToken";
 export interface IGetUserAuthInfoRequest extends Request {
     user: {
         id: string;

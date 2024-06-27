@@ -6,5 +6,5 @@
     "outDir": "./dist",
     "noImplicitAny": true
   },
-  "include": ["./src/**/*.ts"]
+  "include": ["./src/**/*.ts", "src/index.ts"]
 }
