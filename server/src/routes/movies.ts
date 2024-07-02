@@ -77,15 +77,15 @@ router.get("/find/:id",verify,async (req:IGetUserAuthInfoRequest,res:Response)=>
 
 // get all movies
 
-router.get("/all",async (req:IGetUserAuthInfoRequest,res:Response)=>{
-    console.log("hjellllllllllllllllllllllllllll")
+router.get("/all",verify,async (req:IGetUserAuthInfoRequest,res:Response)=>{
+    
     const query = req.query.new;
     try {
         const movies = query ? await Movie.find().sort({createdAt:-1}).limit(5) : await Movie.find();
        
         return res.status(200).json({movies:movies,message: "Movies fetched successfully"});
     } catch (error) {
-        console.log("error.......",error)
+        console.log("error...all movie....",error)
         return res.status(500).json(error);
     }
 }

@@ -19,7 +19,6 @@ router.put("/:id/update", verify, async  (req:IGetUserAuthInfoRequest, res:Respo
         if(req.body.password){
             req.body.password = CryptoJS.AES.encrypt(req.body.password,process.env.SECRET_KEY).toString();
         }
-        console.log("req.body",req.body)
         try {
             const updatedUser = await User.findByIdAndUpdate(req.params.id
             ,{
@@ -27,7 +26,7 @@ router.put("/:id/update", verify, async  (req:IGetUserAuthInfoRequest, res:Respo
                 userName:userName,
                 name:name,
             });
-            console.log("updatedUser",updatedUser)
+        
             return res.status(200).json({user:updatedUser, message: "User updated successfully"});
         } catch (error) {
             console.log(error)
@@ -54,7 +53,7 @@ router.put("/suspend/:id",verify,async (req:IGetUserAuthInfoRequest,res:Response
             return res.status(200).json({message: "User suspended successfully",user:user});
             
         } catch (error) {
-            console.log("error.......",error)
+            console.log("error...suspension....",error)
             return res.status(500).json("Internal server error");
         }
     }else{
@@ -74,7 +73,7 @@ router.get("/:id",verify,async (req:IGetUserAuthInfoRequest,res:Response)=>{
             const {password, ...info} = user._doc;
             return res.status(200).json(info);
         } catch (error) {
-            console.log("error.......",error)
+            console.log("error.. get a user.....",error)
             return res.status(500).json("Internal server error");
         }
     }else{
@@ -97,7 +96,7 @@ router.get("/",verify,async( req:IGetUserAuthInfoRequest,res:Response)=>{
 
             
         } catch (error) {
-            console.log("error.......",error)
+            console.log("error.. all user.....",error)
             return res.status(500).json({message:"Internal server error"});
             
         }

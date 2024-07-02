@@ -39,7 +39,7 @@ const SignUp = () => {
     const onSubmit: SubmitHandler<IFormInput> = async (data) =>{ 
       try {
         const res:AxiosResponse = await axios.post(`/auth/register` , data);
-        if(res.status === 200){
+        if(res.status === 201){
             console.log(res.data);
             navigate("/SignIn");
         }
