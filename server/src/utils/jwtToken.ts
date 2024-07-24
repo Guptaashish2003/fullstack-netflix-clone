@@ -20,6 +20,7 @@ const sendToken = (user: any,  accessToken:string,res:Response) => {
     res.status(200).cookie("token", token, options).json({
       success: true,
       token,
+      email: user.email,
     });
   } catch (error) {
     console.log("error...jwtToken....", error);

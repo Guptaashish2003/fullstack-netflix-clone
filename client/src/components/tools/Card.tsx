@@ -1,8 +1,10 @@
 import React from 'react'
 import { FaPlay } from "react-icons/fa6";
 import Favorite from './Favorite';
+import { Navigate } from 'react-router-dom';
 
 interface IMovies {
+  id?: string;
   img?: string;
   title?: string;
   year?: string;
@@ -11,13 +13,18 @@ interface IMovies {
   limit?: string;
   plot?: string;
   key: number;
+  onclick?: ()=>void;
 }
 
 const Card: React.FC<{ movies: IMovies }> = ({ movies }) => {
   // destructure the movie object
-  const {img, title, year, plot} = movies;
+  const {id,img, title, year, plot} = movies;
+  const sendVideoPage = ()=>{
+    console.log("sendVideoPage",movies);
+    return <Navigate to={`/${id}`} />  
+  }
   return (
-    <div className='group bg-zinc-900 h-[11vw]  col-span relative mt-6  '>
+    <div onClick={sendVideoPage} className='group bg-zinc-900 h-[11vw]  col-span relative mt-6  '>
         <img src={img?img:"12th-Fail.jpg"} alt={title?title:"img"} className='cursor-pointer object-cover transition duration shadow-xl rounded-md group-hover:opacity-90  sm:group-hover:opacity-0 w-full h-[11vw]
          ' />
          <div className='opacity-0 absolute top-0 transition duration-400 z-10 invisible sm:visible delay-300 w-full scale-0 group-hover:scale-110 group-hover:translate-x-[1.5vw] group-hover:translate-y-[-6vw]  group-hover:opacity-100  '>

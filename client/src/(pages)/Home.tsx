@@ -10,13 +10,13 @@ const Home = () => {
   const getMovies = async () => {
     try {
       const res = await axios.get("/movies/all");
-      
+      console.log("res............",res);
       if(res.status === 200){
         
         setMovies(res.data.movies)
       }
     } catch (error) {
-      // console.log(error);
+      console.log(error);
     }
   }
   console.log("movies../.................",movies);
@@ -53,3 +53,4 @@ const Home = () => {
 };
 
 export default Home;
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ODNjMzY3MTkzYzc2MzMzNGY3MWViZSIsIm5hbWUiOiJyYW0iLCJlbWFpbCI6InJhbUBnbWFpbC5jb20iLCJ1c2VyTmFtZSI6InJhbSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MjE4NDQ3MDMsImV4cCI6MTcyMjQ0OTUwM30.CKJR4GK9qoAhkeEPifV2DESfbyNm4B5QGnqzMptFmu4

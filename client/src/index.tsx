@@ -9,6 +9,8 @@ import Home from './(pages)/Home';
 import LandingPage from './components/LandingPage/LandingPage';
 import SignIn from './(pages)/SignIn';
 import SignUp from './(pages)/SignUp';
+import createStore from 'react-auth-kit/createStore';
+import AuthProvider from 'react-auth-kit';
 
 
 const router = createBrowserRouter([
@@ -35,13 +37,22 @@ const router = createBrowserRouter([
 
 ]);
 
+const store =createStore({
+  authName:"_auth",
+  authType:"cookie",
+  cookieDomain:window.location.hostname,
+  cookieSecure:false,
+});
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
+    <AuthProvider store={store}>
     <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );
 
