@@ -13,9 +13,8 @@ export const verify = (req: any, res: Response, next: NextFunction) => {
         const tokenCookie = cookies.find(cookie => cookie.trim().startsWith('token='));
         if (tokenCookie) {
             const token = tokenCookie.split('=')[1];
-            console.log(typeof token);
-            console.log("token...#####.", token);
-
+            // console.log(typeof token);
+            // console.log("token...#####.", token);
             jwt.verify(token, process.env.SECRET_KEY, (err: any, user: User) => {
                 try {
                     if (err) {

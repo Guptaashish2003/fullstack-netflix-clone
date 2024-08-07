@@ -52,6 +52,7 @@ router.post("/register", async (req, res) => {
 
 // login the user
 
+
 router.post("/login", async (req, res: Response) => {
   try {
     const {email,userName,password} = req.body;
@@ -72,7 +73,7 @@ router.post("/login", async (req, res: Response) => {
       return res.status(401).json("Invalid credentials");
     }
     const accessToken=await generateAccessToken(user._id);
-    console.log("accessToken.......",accessToken);
+    // console.log("accessToken.......",accessToken);
     const loggedInUser = {
       name: user.name,
       email: user.email,

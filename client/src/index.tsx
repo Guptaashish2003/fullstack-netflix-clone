@@ -11,6 +11,7 @@ import SignIn from './(pages)/SignIn';
 import SignUp from './(pages)/SignUp';
 import createStore from 'react-auth-kit/createStore';
 import AuthProvider from 'react-auth-kit';
+import Play from './components/PlayVids/Play';
 
 
 const router = createBrowserRouter([
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
   {
     path: "/SignUp",
     element: <SignUp/>,
+  },
+  {
+    path: "/Play/:id",
+    element: <Play/>,
   },
 
 ]);
