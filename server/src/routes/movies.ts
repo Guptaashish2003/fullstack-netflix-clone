@@ -64,11 +64,36 @@ router.delete("/:id",verify,async (req:IGetUserAuthInfoRequest,res:Response)=>{
 
 router.get("/find/:id",verify,async (req:IGetUserAuthInfoRequest,res:Response)=>{
     try {
+        const id = req.params.id;
+        console.log("id.......",id)
         const movie = await Movie.findById(req.params.id);
+        // console.log("movie.......",movie)
         if(!movie){
             return res.status(404).json({message: "Movie not found"});
         }
-        return res.status(200).json(movie);
+        const fetchedMovie ={
+            id:movie._id,
+            title:movie.title,
+            genre:movie.genre,
+            year:movie.year,
+            limit:movie.limit,
+            isSeries:movie.isSeries,
+            trailer:movie.trailer,
+            video:movie.video,
+            img:movie.img,
+            imgTitle:movie.imgTitle,
+            imgSm:movie.imgSm,
+            plot:movie.plot,
+            cast:movie.cast,
+            director:movie.director,
+            writer:movie.writer,
+            runtime:movie.runtime,
+            imdb:movie.imdb,
+            createdAt:movie.createdAt,
+            updatedAt:movie.updatedAt,
+            __v:movie.__v
+        }
+        return res.status(200).json({movie:fetchedMovie,message: "Movie fetched successfully"});
     } catch (error) {
         console.log("error.......",error)
         return res.status(500).json(error);

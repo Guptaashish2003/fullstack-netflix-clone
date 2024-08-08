@@ -1,14 +1,12 @@
 import React from "react";
 import Button from "../components/tools/Button";
-import InputButton from "../components/tools/InputButton";
 import { FaAngleRight } from "react-icons/fa";
 import { useForm, SubmitHandler, set } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import useSignIn from "react-auth-kit/hooks/useSignIn";
-import { SignInActionPayload } from "react-auth-kit";
+
 
 const schema = yup.object().shape({
   email: yup
@@ -28,17 +26,10 @@ interface IFormInput {
   email: string;
   password: string;
 }
-interface AuthResponse {
-  token: string;
-  expiresIn: number;
-  tokenType: string;
-  authState: {
-    email: string;
-  };
-}
+
 
 const SignIn = () => {
-  const signIn = useSignIn();
+
   const navigate = useNavigate();
   const {
     register,
@@ -53,18 +44,7 @@ const SignIn = () => {
 
       if (res.status === 200) {
         
-        signIn({
-          auth: {
-            token: res.data.token,
-            type: res.data.tokenType,
-          },
-          userState: {
-            expiresAt: res.data.expiresIn,
-            email: res.data?.email,
-            isSignIn: true,
-          },
-        });
-        console.log(signIn)
+       
         navigate("/home");
       }
     } catch (error) {
