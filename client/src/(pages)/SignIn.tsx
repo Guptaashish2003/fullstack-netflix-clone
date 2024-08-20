@@ -40,7 +40,7 @@ const SignIn = () => {
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
       const res = await axios.post("/auth/login", data);
-      console.log(res.data);
+      console.log("data..",res.data);
 
       if (res.status === 200) {
         
