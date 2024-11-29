@@ -27,3 +27,20 @@ export interface PlayvideoProps {
   updatedAt?: Date;
   __v?: number;
 }
+
+
+export interface PlayerControllersProps {
+  pause?: Boolean;
+  setPause?: React.Dispatch<React.SetStateAction<Boolean>>;
+  videoRef?: React.RefObject<HTMLVideoElement>;
+  className?: string;
+  pictureInPicture?: Boolean;
+  setPictureInPicture?: React.Dispatch<React.SetStateAction<Boolean>>;
+  isMuted?: Boolean;
+  setIsMuted?: React.Dispatch<React.SetStateAction<Boolean>>;
+  isFullScreen?: Boolean;
+  setIsFullScreen?: React.Dispatch<React.SetStateAction<Boolean>>;
+  isTheaterMode?: Boolean;
+  setIsTheatreMode?: React.Dispatch<React.SetStateAction<Boolean>>;
+
+}

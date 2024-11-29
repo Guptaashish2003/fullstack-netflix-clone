@@ -5,7 +5,7 @@ import "./index.css"
 
 const App = () => {
   return (
-    <div className=' ' >     
+    <div  style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }} className=' ' >     
       <Home />
     </div>
   )

@@ -54,7 +54,7 @@ const NavBar = () => {
             <div className='text-gray-200 hover:text-gray-300 cursor-pointer '><BsBell/></div>
             <div onClick={toggleAccountMenue} className=' flex flex-row items-center gap-2 cursor-pointer relative '>
                 <div className=' w-6 h-6 lg:w-10  lg:h-10  rounded-md overflow-hidden '>
-                    <img src="default-user.png" alt="user" />
+                    <img src="/default-user.png" alt="user" />
 
                 </div>
                 <BsChevronDown className={`text-white transition ${showAccountMenue ? "rotate-180":"rotate-0"}`}/>

@@ -25,8 +25,8 @@ const Home = () => {
   }, []);
 
   return (
-    <div
-      style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+    <div 
+    style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
       className=""
     >
       <NavBar />

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { PlayvideoProps } from '../../interface'
-
+import Player from './Player'
+import NavBar from '../MainPage/NavBar'
 const Play = () => {
   const { id } = useParams()
   const [movie, setMovie] = useState<PlayvideoProps>({})
@@ -21,8 +22,10 @@ const Play = () => {
   }, [])
 
   return (
-    <div className='text-black z-50 bg-slate-500'> 
-      <video className='w-1/2' src= {`${movie.video}`}></video>
+    <div   className='w-full min-h-[100vh] bg-[rgb(0,0,0,0.86)]'> 
+    <NavBar />
+    <Player movie={movie} />
+      
     </div>
   )
 }
