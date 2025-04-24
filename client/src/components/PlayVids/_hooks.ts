@@ -45,3 +45,31 @@ export const handlePlayPause = ({
       }
   }
   
+  export const handleFullScreen = async ({isFullScreen,setIsFullScreen,fullScreenRef}:PlayerControllersProps) => {
+    console.log("isFullScreen............",isFullScreen)
+    if (setIsFullScreen) {
+      setIsFullScreen(!isFullScreen);
+    }
+    try {
+      if (fullScreenRef?.current) {
+        if (!isFullScreen) {
+          // Enter Fullscreen mode
+          await fullScreenRef.current.requestFullscreen();
+          if (setIsFullScreen) {
+            setIsFullScreen(true); // Update state after successfully entering Fullscreen
+          }
+        } else {
+          // Exit Fullscreen mode
+          if (document.fullscreenElement) {
+            await document.exitFullscreen();
+            
+            if (setIsFullScreen) {
+              setIsFullScreen(false); // Update state after successfully exiting Fullscreen
+            }
+          }
+        }
+      }
+    } catch (error) {
+      console.error("Error handling Fullscreen:", error);
+    }
+  }

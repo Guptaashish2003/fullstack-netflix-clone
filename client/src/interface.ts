@@ -40,6 +40,7 @@ export interface PlayerControllersProps {
   setIsMuted?: React.Dispatch<React.SetStateAction<Boolean>>;
   isFullScreen?: Boolean;
   setIsFullScreen?: React.Dispatch<React.SetStateAction<Boolean>>;
+  fullScreenRef?: React.RefObject<HTMLDivElement>;
   isTheaterMode?: Boolean;
   setIsTheatreMode?: React.Dispatch<React.SetStateAction<Boolean>>;
 

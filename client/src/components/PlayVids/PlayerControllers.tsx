@@ -2,7 +2,8 @@ import React from "react";
 import { PlayerControllersProps } from "../../interface";
 import { FaPlay, FaPause } from "react-icons/fa";
 import { TbPictureInPictureOn, TbPictureInPictureOff } from "react-icons/tb";
-import { handlePlayPause, handlePictureInPicture } from "./_hooks";
+import { handlePlayPause, handlePictureInPicture,handleFullScreen } from "./_hooks";
+import { MdFullscreen,MdFullscreenExit  } from "react-icons/md";
 
 const PlayerControllers = ({
   pause,
@@ -15,6 +16,7 @@ const PlayerControllers = ({
   setIsFullScreen,
   isTheaterMode,
   setIsTheatreMode,
+  fullScreenRef,
   isMuted,
   setIsMuted,
 }: PlayerControllersProps) => {
@@ -39,30 +41,50 @@ const PlayerControllers = ({
             />
           )}
         </span>
-        {isFullScreen ? (
+        {!isFullScreen ? (
           <span
-          className=" text-white duration-300 opacity-80 hover:opacity-100  ease-in-out cursor-pointer hover:scale-105"
-          onClick={() =>
-            handlePictureInPicture({
-              pictureInPicture,
-              setPictureInPicture,
-              videoRef,
-            })
-          }
-        >
-          {pictureInPicture ? (
-            <TbPictureInPictureOff size={24} />
-          ) : (
-            <TbPictureInPictureOn size={24} />
-          )}
-        </span>):""}
+            className=" text-white duration-300 opacity-80  hover:opacity-100  ease-in-out cursor-pointer hover:scale-105"
+            onClick={() =>
+              handlePictureInPicture({
+                pictureInPicture,
+                setPictureInPicture,
+                videoRef,
+              })
+            }
+          >
+            {pictureInPicture ? (
+              <TbPictureInPictureOff size={28} />
+            ) : (
+              <TbPictureInPictureOn size={28} />
+            )}
+          </span>
+        ) : (
+          ""
+        )}
         <div
-          className={`text-white duration-300 border-[3px] my-auto ${isTheaterMode?"!h-0.5 w-6":"h-2 w-8"} p-2 ease-in-out cursor-pointer opacity-80 hover:opacity-100 ${
+          className={`text-white duration-300 border-[3px] my-auto ${
+            isTheaterMode ? "!h-0.5 w-6" : "h-2 w-8"
+          } p-2 ease-in-out cursor-pointer opacity-80 hover:opacity-100 ${
             isFullScreen ? "" : ""
           } `}
           onClick={() => setIsTheatreMode && setIsTheatreMode(!isTheaterMode)}
-            
-        ></div>
+        />
+        <span
+          className=" text-white duration-300 opacity-80  hover:opacity-100  ease-in-out cursor-pointer hover:scale-105"
+          onClick={() =>
+            handleFullScreen({
+              isFullScreen,
+              setIsFullScreen,
+              fullScreenRef,
+            })
+          }
+        >
+          {isFullScreen ? (
+            <MdFullscreenExit size={32} />
+          ) : (
+            <MdFullscreen  size={32} />
+          )}
+        </span>
       </div>
     </div>
   );
